@@ -1,0 +1,17 @@
+{
+  "locale": "pt-BR",
+  "person": {
+    "name": "teste",
+    "email": "teste@testin@gmail.com",
+    "phone": "48991257878",
+    "birthdate": "2003-08-06",
+    "address": {
+      "filled": "1",
+      "street": "rua teste",
+      "city": "teste",
+      "state": "sc",
+      "postal_code": "88800000",
+      "country": "Brasil"
+    }
+  }
+}

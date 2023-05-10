@@ -1,0 +1,13 @@
+pt-BR:
+  activerecord:
+    models:
+      person:
+        one: "Pessoa"
+        other: "Pessoas"
+
+    attributes:
+      person:
+        name: "Nome"
+        email: "E-mail"
+        phone: "Telefone"
+        birthdate: "Data de aniversário"

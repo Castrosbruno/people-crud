@@ -1,0 +1,141 @@
+<link rel="stylesheet" href="application.css">
+<%= form_with(model: person) do |form| %>
+  <% if person.errors.any? || person&.address&.errors&.any? %>
+    <div style="color: red">
+      <% errors_address = person&.address&.errors&.count || 0 %>
+      <% total_errors = person.errors.count + errors_address %>
+      <h2><%= pluralize(total_errors, "error") %> prohibited this person from being saved:</h2>
+
+      <ul>
+        <% person.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+
+        <% person&.address&.errors&.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mx-auto py-6 sm:px-6 lg:px-8">
+    <div class="bg-white shadow-md rounded-lg overflow-hidden">
+      <div class="bg-gray-400 px-4 py-2 border-b border-gray-700">
+        <% if action_name == 'new' %>
+          <h3 class="text-lg leading-6 font-medium text-gray-900">Nova Pessoa</h3>
+        <% else %>
+          <h3 class="text-lg leading-6 font-medium text-gray-900">Editando Pessoa</h3>
+        <% end %>
+      </div>
+    </div>
+    <div class="flex flex-col">
+      <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+          <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= form.label :name, style: "display: block" %></th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= form.label :email, style: "display: block" %></th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= form.label :phone, style: "display: block" %></th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= form.label :birthdate, style: "display: block" %></th>
+              </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="flex items-center">
+                    <div class="border border-gray-400 rounded-md px-2 py-1">
+                      <div class="text-sm font-medium text-gray-900"><%= form.text_field :name %></div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="border border-gray-400 rounded-md px-2 py-1">
+                    <div class="text-sm text-gray-900"><%= form.text_field :email %></div>
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="border border-gray-400 rounded-md px-2 py-1">
+                    <div class="text-sm text-gray-900"><%= form.text_field :phone, placeholder: '(00)00000-0000' %></div>
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= form.date_field :birthdate %></td>
+              </tr>
+              </tbody>
+            </table>
+            <%= form.fields_for @address do |address_form| %>
+              <% if action_name == 'new' %><br>
+                <div class="text-center mt-10">
+                  <%= address_form.check_box :filled %>
+                  <%= address_form.label 'Deseja informar um endereço?' %>
+                </div>
+                <br>
+              <% end %>
+              <div style="text-align: center">
+                <hr>
+                  <h3 class="text-lg leading-6 font-medium text-gray-900">Endereço</h3>
+                <hr>
+              </div>
+
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                <tr>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= address_form.label :street %></th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= address_form.label :city %></th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= address_form.label :state %></th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= address_form.label :postal_code %></th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= address_form.label :country %></th>
+                </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center">
+                      <div class="border border-gray-400 rounded-md px-2 py-1">
+                        <div class="text-sm font-medium text-gray-900"><%= address_form.text_field :street %></div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="border border-gray-400 rounded-md px-2 py-1">
+                      <div class="text-sm text-gray-900"><%= address_form.text_field :city %></div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="border border-gray-400 rounded-md px-2 py-1">
+                      <div class="text-sm text-gray-900"><%= address_form.text_field :state %></div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= address_form.number_field :postal_code, placeholder: '00000-000' %></td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="border border-gray-400 rounded-md px-2 py-1">
+                      <div class="text-sm text-gray-900"><%= address_form.text_field :country %></div>
+                    </div>
+                  </td>
+                  <td>
+                    <% if @address.persisted? %>
+                      <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded-md inline-block">
+                        <%= link_to address_path(@address), method: :delete, title: 'Excluir endereço' do %>
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"/>
+                          </svg>
+                        <% end %>
+                      </button>
+                    <% end %>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="flex" style="float: right">
+      <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded-md inline-block mr-2"><%= form.submit %></button>
+      <button class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-1 px-2 rounded-md inline-block"><%= link_to "Voltar para lista de pessoas", people_path %></button>
+    </div>
+<% end %>

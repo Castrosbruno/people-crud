@@ -6,6 +6,9 @@ ruby "3.2.2"
 # DotEnv
 gem "dotenv-rails"
 
+# I18n
+gem "i18n"
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 
@@ -66,17 +69,16 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 
-  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler"
-
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
+  gem "pry-byebug", "3.4.2"
+  gem "pry-remote", "0.1.8"
 end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "database_cleaner"
+  gem "pry-byebug", "3.4.2"
+  gem "rails-controller-testing"
   gem "selenium-webdriver"
   gem "shoulda-matchers"
   gem "simplecov"
