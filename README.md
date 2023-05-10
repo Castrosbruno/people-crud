@@ -76,9 +76,11 @@ _____________________________________________________________________________
 
 **Ruby Critic**
 
+![image](https://github.com/Castrosbruno/people-crud/assets/69633173/3ae75087-12f3-460c-b534-a036e43ecc3a)
 
 **SimpleCov**
 
+![image](https://github.com/Castrosbruno/people-crud/assets/69633173/244164fc-6361-44bd-92c1-470df456b60f)
 
 **Como obter essas métricas localmente**
 
