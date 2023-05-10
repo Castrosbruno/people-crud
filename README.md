@@ -16,7 +16,7 @@ Installation:
 
 `cd people-crud`
 
-3 - Create .evn file
+3 - Create .env file
 
 `cp .env.sample .env`
 
