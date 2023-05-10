@@ -16,13 +16,13 @@ Installation:
 
 `cd people-crud`
 
-3 - Create .env file
+3 - Create .env file and add your environment variables
 
 `cp .env.sample .env`
 
 4- Install the gems:
 
-`bundle install or bundle`
+`bundle install`
 
 5 - run db:create and migrate
 
